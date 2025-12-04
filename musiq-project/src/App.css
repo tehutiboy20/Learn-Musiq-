@@ -1,42 +1,117 @@
-/* #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.piano-container {
+  position: relative;
+}
+
+.white-key {
+  font-size: 40px;  /* was 32px */
+  font-weight: bold;
+  color: #000;
+  background: linear-gradient(to bottom, #fff 0%, #eee 100%);
+  width: 90px;  /* was 75px */
+  height: 350px;  /* was 300px */
+  border: 1px solid #000;
+  box-shadow: 0 5px 5px rgba(0,0,0,0.3);
+  z-index: 1;
+
   text-align: center;
+  padding-top: 280px;  /* was 240px */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.white-key-pressed {
+  background: linear-gradient(to bottom, #ddd, #ccc);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.black-key {
+  font-size: 34px;  /* was 28px */
+  color: white; 
+  background: linear-gradient(to bottom, #333, #000);
+  width: 54px;  /* was 45px */
+  height: 210px;  /* was 180px */
+  position: absolute;
+  margin-left: -27px;  /* was -22.5px (half of new width) */
+  z-index: 2;
+  text-shadow: 0 0 8px rgba(37, 99, 235, 0.5);
+  text-align: center;
+  padding-top: 158px;  /* was 135px */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.black-key-pressed {
+  background: linear-gradient(to bottom, #555, #333);
 }
 
-.card {
-  padding: 2em;
+.toggle-guide-btn {
+  margin: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
 }
 
-.read-the-docs {
-  color: #888;
-} */
+.keyboard-guide {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.keyboard-row {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.guide-key {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 25px;  /* was 15px 20px */
+  border: 3px solid #ccc;  /* was 2px */
+  border-radius: 8px;  /* was 5px */
+  background-color: white;
+  min-width: 100px;  /* was 80px */
+  transition: background-color 0.2s;
+}
+
+.guide-key-active {
+  background-color: yellow !important;
+  border-color: orange;
+}
+
+.guide-keyboard-key {
+  font-size: 42px;  /* was 32px */
+  font-weight: bold;
+  font-family: 'Arial', 'Helvetica', sans-serif;
+  color: #333;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.2);  /* was 1px 1px 2px */
+}
+
+.guide-note-name {
+  font-size: 30px;  /* was 24px */
+  font-weight: 600;
+  font-family: 'Courier New', monospace;
+  margin-top: 10px;  /* was 8px */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);  /* was 1px 1px 3px */
+}
+
+/* Natural notes (white keys) - Blue */
+.guide-key:not(.guide-key-sharp) .guide-note-name {
+  color: #2563eb; /* Nice blue */
+}
+
+/* Sharp notes (black keys) - Purple/Red */
+.guide-key-sharp .guide-note-name {
+  color: #9333ea; /* Purple for sharps */
+}
+
+.guide-key-active .guide-note-name {
+  color: #000 !important; /* Black when active for contrast */
+}
+
