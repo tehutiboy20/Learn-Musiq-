@@ -1,8 +1,44 @@
+/* Base styles - NO FLEXBOX */
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Arial', sans-serif;
+  transition: background 0.5s ease;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+}
+
+/* Light Mode */
+body.light-mode {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 50%, #ff9a9e 100%);
+}
+
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+
+#root {
+  width: 100%;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.button-container {
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.button-container button {
+  margin: 0 10px;
 }
 
 .piano-container {
@@ -113,5 +149,357 @@ body {
 
 .guide-key-active .guide-note-name {
   color: #000 !important; /* Black when active for contrast */
+}
+
+/* Tutorial styles */
+.song-select,
+.tutorial-btn {
+  padding: 15px 25px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+
+.song-select {
+  background: white;
+  color: #333;
+  border: 2px solid #ccc;
+}
+
+.tutorial-btn {
+  background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+  color: white;
+}
+
+/* Highlight next note to press */
+.next-note-highlight {
+  animation: pulse 1s ease-in-out infinite;
+  box-shadow: 0 0 30px rgba(56, 239, 125, 0.8) !important;
+}
+
+.next-note-pulse {
+  animation: pulse 1s ease-in-out infinite;
+  border-color: #38ef7d !important;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
+}
+
+/* Completion Message */
+.completion-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  animation: fadeInScale 0.5s ease-out;
+}
+
+.completion-content {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+}
+
+.completion-content h2 {
+  color: white;
+  font-size: 36px;
+  margin: 0 0 15px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.completion-content p {
+  color: white;
+  font-size: 20px;
+  margin: 0;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+.app-header {
+  text-align: center;
+  padding: 30px 20px;
+  margin-bottom: 20px;
+}
+
+.app-title {
+  font-size: 64px;
+  font-weight: bold;
+  margin: 0;
+  letter-spacing: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+}
+
+
+.app-title .emoji {
+  font-size: 64px;
+  filter: none !important;
+  -webkit-text-fill-color: initial !important;
+  background: none !important;
+}
+
+
+.app-title .title-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: titleGlow 3s ease-in-out infinite;
+}
+
+body.dark-mode .app-title .title-text {
+  background: linear-gradient(135deg, #00d4ff 0%, #ff00ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.5));
+}
+
+body.light-mode .app-title .title-text {
+  background: linear-gradient(135deg, #ff1744 0%, #ff6b9d 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(2px 2px 6px rgba(255, 23, 68, 0.5));
+}
+
+.app-subtitle {
+  font-size: 24px;  
+  margin: 10px 0 0 0;
+  font-weight: 600;  /* Bolder */
+  letter-spacing: 1px;
+}
+
+body.dark-mode .app-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+body.light-mode .app-subtitle {
+  color: rgba(51, 51, 51, 0.95);  /* Darker, more opaque */
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.3),  /* Stronger shadow */
+    0 0 15px rgba(255, 107, 157, 0.4);
+}
+
+@keyframes titleGlow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(102, 126, 234, 0.3));
+  }
+  50% {
+    filter: drop-shadow(0 0 25px rgba(118, 75, 162, 0.5));
+  }
+}
+
+/* Piano key text - better light mode readability */
+body.light-mode .white-key {
+  color: #1a1a1a;  /* Darker text */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);  
+}
+
+body.light-mode .black-key {
+  text-shadow: 
+    0 0 10px rgba(255, 215, 0, 0.8),
+    2px 2px 4px rgba(0, 0, 0, 0.5);  
+}
+
+/* Guide keyboard key text - light mode */
+body.light-mode .guide-keyboard-key {
+  color: #1a1a1a;  
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.4),  /* Stronger shadow */
+    0 0 10px rgba(255, 255, 255, 0.5);  /* White glow for depth */
+  font-size: 46px;  
+}
+
+body.light-mode .guide-note-name {
+  font-size: 34px;  
+}
+
+/* Light mode natural notes - darker pink with better shadow */
+body.light-mode .guide-key:not(.guide-key-sharp) .guide-note-name {
+  color: #d81b60;  /* Darker, more saturated pink */
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(216, 27, 96, 0.5);
+}
+
+/* Light mode sharp notes - darker orange with better shadow */
+body.light-mode .guide-key-sharp .guide-note-name {
+  color: #e65100;  /* Darker orange */
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.4),
+    0 0 12px rgba(230, 81, 0, 0.5);
+}
+
+/* Dark mode active keyboard guide */
+body.dark-mode .guide-key-active {
+  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%) !important;
+  border-color: #00d4ff !important;
+  box-shadow: 
+    0 0 40px rgba(0, 212, 255, 1),
+    0 0 60px rgba(0, 212, 255, 0.8),
+    inset 0 0 20px rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Light mode active keyboard guide */
+body.light-mode .guide-key-active {
+  background: linear-gradient(135deg, #ff6b9d 0%, #ff4081 100%) !important;
+  border: 3px solid #ff1744 !important;
+  box-shadow: 
+    0 0 40px rgba(255, 107, 157, 1),
+    0 0 60px rgba(255, 23, 68, 0.8),
+    inset 0 0 20px rgba(255, 255, 255, 0.6) !important;
+  transform: translateY(-5px) scale(1.05);
+}
+
+/* Tutorial next note pulse - Dark mode */
+body.dark-mode .next-note-pulse {
+  animation: pulseDark 1s ease-in-out infinite;
+  border-color: #38ef7d !important;
+  box-shadow: 
+    0 0 30px rgba(56, 239, 125, 1),
+    0 0 50px rgba(56, 239, 125, 0.8) !important;
+}
+
+/* Tutorial next note pulse - Light mode */
+body.light-mode .next-note-pulse {
+  animation: pulseLight 1s ease-in-out infinite;
+  border: 3px solid #ff6f00 !important;
+  box-shadow: 
+    0 0 30px rgba(255, 152, 0, 1),
+    0 0 50px rgba(255, 111, 0, 0.8) !important;
+}
+
+/* Piano key highlights - Dark mode */
+body.dark-mode .next-note-highlight {
+  animation: pulseDark 1s ease-in-out infinite;
+  box-shadow: 
+    0 0 40px rgba(56, 239, 125, 1) !important,
+    0 0 60px rgba(56, 239, 125, 0.8) !important,
+    inset 0 0 20px rgba(56, 239, 125, 0.5) !important;
+  border: 3px solid #38ef7d !important;
+}
+
+/* Piano key highlights - Light mode */
+body.light-mode .next-note-highlight {
+  animation: pulseLight 1s ease-in-out infinite;
+  box-shadow: 
+    0 0 40px rgba(255, 152, 0, 1) !important,
+    0 0 60px rgba(255, 111, 0, 0.8) !important,
+    inset 0 0 20px rgba(255, 152, 0, 0.5) !important;
+  border: 3px solid #ff9800 !important;
+}
+
+/* Dark mode pulse animation */
+@keyframes pulseDark {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 
+      0 0 30px rgba(56, 239, 125, 1),
+      0 0 50px rgba(56, 239, 125, 0.8);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 
+      0 0 50px rgba(56, 239, 125, 1),
+      0 0 80px rgba(56, 239, 125, 1),
+      0 0 100px rgba(56, 239, 125, 0.6);
+  }
+}
+
+/* Light mode pulse animation */
+@keyframes pulseLight {
+  {
+    transform: scale(1);
+    box-shadow: 
+      0 0 30px rgba(255, 152, 0, 1),
+      0 0 50px rgba(255, 111, 0, 0.8);
+  }
+  50% {
+    transform: scale(1.08);
+    box-shadow: 
+      0 0 50px rgba(255, 152, 0, 1),
+      0 0 80px rgba(255, 111, 0, 1),
+      0 0 100px rgba(255, 152, 0, 0.6);
+  }
+}
+
+/* Make pressed piano keys more dramatic */
+body.dark-mode .white-key-pressed {
+  background: linear-gradient(to bottom, #00d4ff 20%, #0099cc 100%);
+  box-shadow: 
+    0 0 30px rgba(0, 212, 255, 1),
+    0 0 50px rgba(0, 212, 255, 0.8),
+    inset 0 0 15px rgba(255, 255, 255, 0.3);
+  color: #fff;
+  text-shadow: 
+    0 0 15px rgba(0, 212, 255, 1),
+    0 0 25px rgba(255, 255, 255, 1);
+  transform: translateY(3px) scale(0.98);
+}
+
+body.light-mode .white-key-pressed {
+  background: linear-gradient(to bottom, #ff6b9d 20%, #ff4081 100%);
+  box-shadow: 
+    0 0 30px rgba(255, 107, 157, 1),
+    0 0 50px rgba(255, 64, 129, 0.8),
+    inset 0 0 15px rgba(255, 255, 255, 0.4);
+  color: #fff;
+  text-shadow: 
+    0 0 15px rgba(255, 107, 157, 1),
+    0 0 25px rgba(255, 255, 255, 1);
+  transform: translateY(3px) scale(0.98);
+}
+
+body.dark-mode .black-key-pressed {
+  background: linear-gradient(to bottom, #ff00ff 20%, #cc00cc 100%);
+  box-shadow: 
+    0 0 35px rgba(255, 0, 255, 1),
+    0 0 55px rgba(255, 0, 255, 0.9),
+    inset 0 0 15px rgba(255, 255, 255, 0.3);
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 1),
+    0 0 30px rgba(255, 0, 255, 1);
+  transform: translateY(3px) scale(0.98);
+}
+
+body.light-mode .black-key-pressed {
+  background: linear-gradient(to bottom, #ffd700 20%, #ff8c00 100%);
+  box-shadow: 
+    0 0 35px rgba(255, 215, 0, 1),
+    0 0 55px rgba(255, 140, 0, 0.9),
+    inset 0 0 15px rgba(255, 255, 255, 0.4);
+  text-shadow: 
+    0 0 20px rgba(255, 255, 255, 1),
+    0 0 30px rgba(255, 215, 0, 1);
+  transform: translateY(3px) scale(0.98);
 }
 
